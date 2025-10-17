@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Template Example</title>
+  <style>
+    .user-card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 8px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>User List</h2>
+  <div id="user-container"></div>
+
+  <!-- Template element -->
+  <template id="user-template">
+    <div class="user-card">
+      <h4 class="name"></h4>
+      <p class="email"></p>
+    </div>
+  </template>
+
+  <script>
+    const users = [
+      { name: "Ankit Sharma", email: "ankit@example.com" },
+      { name: "Riya Mehta", email: "riya@example.com" },
+      { name: "Rahul Verma", email: "rahul@example.com" }
+    ];
+
+    const container = document.getElementById('user-container');
+    const template = document.getElementById('user-template');
+
+    users.forEach(user => {
+      // 1. Clone the template content
+      const clone = template.content.cloneNode(true);
+
+      // 2. Fill in the data
+      clone.querySelector('.name').textContent = user.name;
+      clone.querySelector('.email').textContent = user.email;
+
+      // 3. Append to the container
+      container.appendChild(clone);
+    });
+  </script>
+
+</body>
+</html>
