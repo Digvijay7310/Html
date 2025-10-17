@@ -52,3 +52,35 @@
 
 </body>
 </html>
+<template id="user-template">
+  <div class="user-card">
+    <h4 class="name"></h4>
+    <p class="email"></p>
+    <button class="delete-btn">Delete</button>
+  </div>
+</template>
+
+<div id="user-container"></div>
+
+<script>
+  const users = [
+    { name: "Ankit Sharma", email: "ankit@example.com" },
+    { name: "Riya Mehta", email: "riya@example.com" },
+    { name: "Rahul Verma", email: "rahul@example.com" }
+  ];
+
+  const container = document.getElementById('user-container');
+  const template = document.getElementById('user-template');
+
+  users.forEach(user => {
+    const clone = template.content.cloneNode(true);
+    clone.querySelector('.name').textContent = user.name;
+    clone.querySelector('.email').textContent = user.email;
+
+    clone.querySelector('.delete-btn').addEventListener('click', function () {
+      this.closest('.user-card').remove();
+    });
+
+    container.appendChild(clone);
+  });
+</script>
